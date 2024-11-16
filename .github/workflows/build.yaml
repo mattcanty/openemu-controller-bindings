@@ -2,8 +2,6 @@ name: goreleaser
 
 on:
   push:
-    tags:
-      - "*"
 
 permissions:
   contents: write
@@ -23,6 +21,6 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: release --clean
+          args: build --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

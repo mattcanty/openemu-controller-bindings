@@ -1,0 +1,17 @@
+project_name: openemu-controller-bindings
+builds:
+  - id: main
+    os: [linux, darwin, windows]
+    arch: [amd64]
+    goos: [linux, darwin, windows]
+    goarch: amd64
+    main: ./main.go
+    binary: ocb
+
+release:
+  github:
+    owner: mattcanty
+    name: openemu-controller-bindings
+
+artifact:
+  name_template: "{{ .ProjectName }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
