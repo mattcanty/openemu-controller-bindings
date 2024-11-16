@@ -1,0 +1,54 @@
+name: Build for Multiple Platforms
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Program
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [windows, linux, macos]
+        goos: [windows, linux, darwin]
+        goarch: [amd64, arm64]
+        exclude:
+          - goos: windows
+            goarch: arm64
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Go environment
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21 # Adjust based on your Go version
+
+      # Display environment info (optional)
+      - name: Print Go Environment
+        run: go env
+
+      # Build the program
+      - name: Build Program
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          mkdir -p build/${{ matrix.goos }}-${{ matrix.goarch }}
+          go build -o build/${{ matrix.goos }}-${{ matrix.goarch }}/ocb
+
+      # Upload artifacts
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.goos }}-${{ matrix.goarch }}
+          path: build/${{ matrix.goos }}-${{ matrix.goarch }}
