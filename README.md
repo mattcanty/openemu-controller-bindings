@@ -2,7 +2,7 @@
 
 ## The Problem: No Per-Game Controller Mappings in OpenEmu
 
-OpenEmu lacks support for per-game controller mappings. This gap becomes glaring when playing games like **Perfect Dark** and **1080 Snowboarding** on N64. Just have a go and come let me know you can play them without your brain overheating.
+OpenEmu lacks support for per-game controller mappings [[0], [1], [2], [3]]. This gap becomes glaring when playing games like **Perfect Dark** and **1080 Snowboarding** on N64. Just have a go and come let me know you can play them on defaults without your brain overheating.
 
 So, I made a plaster to cover this wound: a CLI tool to let you save, load, and list controller mappings. While it’s not the perfect solution, it’s functional and gets the job done.
 
@@ -19,3 +19,8 @@ ocb save <NAME>
 ocb load <NAME>
 ocb list
 ```
+
+[0]: https://github.com/OpenEmu/OpenEmu/issues/206
+[1]: https://github.com/OpenEmu/OpenEmu/issues/1005
+[2]: https://github.com/OpenEmu/OpenEmu/issues/1033
+[3]: https://github.com/OpenEmu/OpenEmu/issues/1944
