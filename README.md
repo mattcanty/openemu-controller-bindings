@@ -24,11 +24,15 @@ Nothing clever is happening here. It literally copies files.
 
 Edit your mappings using OpenEmu as normal. Then save the settings:
 
+### Save
+
 ```bash
 ocb save <NAME>
 ```
 
 This will create a copy of the configuration with the name provided. You can then load that configuration back using load:
+
+### Load
 
 ```bash
 ocb load <NAME>
@@ -36,6 +40,8 @@ ocb load <NAME>
 
 > [!IMPORTANT]  
 > OpenEmu will not automatically start working with these mappings. You must restart OpenEmu.
+
+### List
 
 ```bash
 ocb list
