@@ -4,7 +4,7 @@
 > 👋 24 hours after authoring the simple approach, I realised that the file is a binary plist. I am not currently aware of the cross-platform implications of this, however I am interested in improving this tool such that configurations can be provided out of the box.
 
 > [!IMPORTANT]  
-> 🕹️ I don't want anything here to detract away from what a fantastic job the team have done with [OpenEmu](https://openemu.org). I can't highly recommend it enough. Gone are the days where this was a challenging endeavour.
+> 🕹️ I don't want anything here to detract away from what a fantastic job the team have done with [OpenEmu](https://openemu.org). I can't recommend it enough. Gone are the days where this was a challenging endeavour.
 
 ## The Problem: No Per-Game Controller Mappings in OpenEmu
 
