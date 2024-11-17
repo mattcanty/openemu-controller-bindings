@@ -37,10 +37,10 @@ ocb list
 
 ## References
 
-- OpenEmu/OpenEmu#206
-- OpenEmu/OpenEmu#1005
-- OpenEmu/OpenEmu#1033
-- OpenEmu/OpenEmu#1944
+- [OpenEmu/OpenEmu#206](https://github.com/OpenEmu/OpenEmu/issues/206)
+- [OpenEmu/OpenEmu#1005](https://github.com/OpenEmu/OpenEmu/issues/1005)
+- [OpenEmu/OpenEmu#1033](https://github.com/OpenEmu/OpenEmu/issues/1033)
+- [OpenEmu/OpenEmu#1944](https://github.com/OpenEmu/OpenEmu/issues/1944)
 - https://www.reddit.com/r/OpenEmu/comments/1cd2ate/different_controller_bindings_for_different_games/
 - https://www.reddit.com/r/OpenEmu/comments/fxepjx/saving_control_schemes/
 - https://www.reddit.com/r/OpenEmu/comments/d2uhiw/have_different_button_mapping_per_game_in/
