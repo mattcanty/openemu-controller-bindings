@@ -16,7 +16,7 @@ before:
     - go generate ./...
 
 builds:
-  - main: cmd/cli/ocb
+  - main: cmd/cli/ocb/main.go
     binary: ocb
     env:
       - CGO_ENABLED=0
