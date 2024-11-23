@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > 🕹️ I don't want anything here to detract away from what a fantastic job the team have done with [OpenEmu](https://openemu.org). I can't highly recommend it enough. Gone are the days where this was a challenging endeavour.
 
-> [!INFO]
+> [!NOTE]
 > I think it would be useful to have a simple way of ripping the controller mappings instead of manually writing out the game files. I'll do this one day soon.
 
 ## The Problem: No Per-Game Controller Mappings in OpenEmu
