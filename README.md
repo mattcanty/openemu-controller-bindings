@@ -1,10 +1,9 @@
 # OpenEmu Controller Mappings Tool
 
-> [!NOTE]  
-> 👋 24 hours after authoring the simple approach, I realised that the file is a binary plist. I am not currently aware of the cross-platform implications of this, however I am interested in improving this tool such that configurations can be provided out of the box.
-
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > 🕹️ I don't want anything here to detract away from what a fantastic job the team have done with [OpenEmu](https://openemu.org). I can't highly recommend it enough. Gone are the days where this was a challenging endeavour.
+> [!INFO]
+> I think it would be useful to have a simple way of ripping the controller mappings instead of manually writing out the game files. I'll do this one day soon.
 
 ## The Problem: No Per-Game Controller Mappings in OpenEmu
 
@@ -22,15 +21,11 @@ Nothing clever is happening here. It literally copies files.
 
 ## Usage
 
-Edit your mappings using OpenEmu as normal. Then save the settings:
-
-### Save
+### Backup
 
 ```bash
-ocb save <NAME>
+ocb backup
 ```
-
-This will create a copy of the configuration with the name provided. You can then load that configuration back using load:
 
 ### Load
 
@@ -38,7 +33,9 @@ This will create a copy of the configuration with the name provided. You can the
 ocb load <NAME>
 ```
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
+> Exising controller bindings will be erased. Take a backup first if you need to.
+> [!IMPORTANT]
 > OpenEmu will not automatically start working with these mappings. You must restart OpenEmu.
 
 ### List

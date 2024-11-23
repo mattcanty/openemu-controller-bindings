@@ -16,7 +16,8 @@ before:
     - go generate ./...
 
 builds:
-  - binary: ocb
+  - main: cmd/cli/ocb
+    binary: ocb
     env:
       - CGO_ENABLED=0
     goos:

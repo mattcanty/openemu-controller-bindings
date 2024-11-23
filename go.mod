@@ -2,7 +2,11 @@ module github.com/mattcanty/openemu-controller-bindings
 
 go 1.20
 
-require github.com/spf13/cobra v1.8.1
+require (
+	github.com/spf13/cobra v1.8.1
+	gopkg.in/yaml.v3 v3.0.1
+	howett.net/plist v1.0.1
+)
 
 require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
