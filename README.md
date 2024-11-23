@@ -27,6 +27,12 @@ Nothing clever is happening here. It literally copies files.
 ocb backup
 ```
 
+### List
+
+```bash
+ocb list
+```
+
 ### Load
 
 ```bash
@@ -37,12 +43,6 @@ ocb load <NAME>
 > Exising controller bindings will be erased. Take a backup first if you need to.
 > [!IMPORTANT]
 > OpenEmu will not automatically start working with these mappings. You must restart OpenEmu.
-
-### List
-
-```bash
-ocb list
-```
 
 ## References
 
