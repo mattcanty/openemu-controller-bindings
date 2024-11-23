@@ -2,6 +2,7 @@
 
 > [!IMPORTANT]
 > 🕹️ I don't want anything here to detract away from what a fantastic job the team have done with [OpenEmu](https://openemu.org). I can't highly recommend it enough. Gone are the days where this was a challenging endeavour.
+
 > [!INFO]
 > I think it would be useful to have a simple way of ripping the controller mappings instead of manually writing out the game files. I'll do this one day soon.
 
@@ -35,14 +36,16 @@ ocb list
 
 ### Load
 
+> [!IMPORTANT]
+> Exising controller bindings will be erased. Take a backup first if you need to.
+
+> [!IMPORTANT]
+> OpenEmu will not automatically start working with these mappings. You must restart OpenEmu.
+
 ```bash
 ocb load <NAME>
 ```
 
-> [!IMPORTANT]
-> Exising controller bindings will be erased. Take a backup first if you need to.
-> [!IMPORTANT]
-> OpenEmu will not automatically start working with these mappings. You must restart OpenEmu.
 
 ## References
 
