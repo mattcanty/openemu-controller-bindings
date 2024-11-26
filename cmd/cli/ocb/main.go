@@ -95,7 +95,20 @@ var captureCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		system := args[0]
-		game := args[1]
+		game := strings.ToLower(strings.ReplaceAll(args[1], " ", "-"))
+
+		if _, exists := internal.SystemConfigs[system]; !exists {
+			fmt.Printf("invalid system: %s\n", system)
+			fmt.Println("\nAvailable systems:")
+
+			systems := make([]string, 0, len(internal.SystemConfigs))
+			for system := range internal.SystemConfigs {
+				systems = append(systems, system)
+			}
+			fmt.Println(strings.Join(systems, ", "))
+
+			return nil
+		}
 
 		fmt.Printf("Capturing mapping for %s-%s\n", system, game)
 

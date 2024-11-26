@@ -46,6 +46,12 @@ ocb list
 ocb load <NAME>
 ```
 
+### Capture
+
+```bash
+ocb capture <SYSTEM> <GAME>
+```
+
 ## References
 
 - [OpenEmu/OpenEmu#206](https://sgithub.com/OpenEmu/OpenEmu/issues/206)
