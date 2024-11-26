@@ -12,9 +12,9 @@ import (
 )
 
 const (
-	bindingsDirMac     = "Library/Application Support/OpenEmu/Bindings"
+	bindingsDirMac     = "/Library/Application Support/OpenEmu/Bindings"
 	bindingsDirLinux   = ".local/share/OpenEmu/Bindings"
-	bindingsDirWindows = "OpenEmu/Bindings"
+	bindingsDirWindows = "AppData/Roaming/OpenEmu/Bindings"
 	bindingsFilename   = "Default.oebindings"
 )
 
@@ -64,6 +64,28 @@ func BackupBindings() error {
 	_, err = destination.ReadFrom(source)
 
 	return err
+}
+
+func loadBindings() (map[string]SystemBinding, error) {
+	bindingsDir, err := getBindingsDir()
+	if err != nil {
+		return nil, err
+	}
+
+	bindingsFilePath := filepath.Join(bindingsDir, bindingsFilename)
+
+	bindings, err := os.ReadFile(bindingsFilePath)
+	if err != nil {
+		return nil, err
+	}
+
+	decoder := plist.NewDecoder(bytes.NewReader(bindings))
+	var data map[string]SystemBinding
+	if err := decoder.Decode(&data); err != nil {
+		return nil, err
+	}
+
+	return data, nil
 }
 
 func getBindingsDir() (string, error) {

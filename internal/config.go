@@ -9,13 +9,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type SystemsConfig map[string]SystemConfig
-
-type SystemConfig struct {
-	Namespace string `yaml:"Namespace"`
-	Prefix    string `yaml:"Prefix"`
-}
-
 type GameMappingConfig struct {
 	System      string       `yaml:"System"`
 	Controllers []Controller `yaml:"Controllers"`
@@ -43,6 +36,15 @@ func (m Mapping) MappingValue(c Controller) string {
 	return fmt.Sprintf("OEController%s%s", c.Name, m.Controller)
 }
 
+func SaveGameMappingConfig(filename string, config GameMappingConfig) error {
+	yamlData, err := yaml.Marshal(config)
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(filename, yamlData, 0644)
+}
+
 func loadYamlConfig[T any](filename string) (T, error) {
 	var target T
 	file, err := os.Open(filename)
@@ -63,23 +65,19 @@ func LoadGameMappingConfig(filename string) (GameMappingConfig, error) {
 	return loadYamlConfig[GameMappingConfig](filename)
 }
 
-func LoadSystemsConfig() (SystemsConfig, error) {
-	return loadYamlConfig[SystemsConfig]("config/systems.yaml")
-}
-
 func LoadSystemConfig(g GameMappingConfig) (SystemConfig, error) {
-	systems, err := LoadSystemsConfig()
-	if err != nil {
-		return SystemConfig{}, err
-	}
-
-	return systems[g.System], nil
+	return SystemConfigs[g.System], nil
 }
 
-func ListAvailableMappingFiles(configDir string) ([]string, error) {
+func ListAvailableMappingFiles() ([]string, error) {
 	var result []string
 
-	err := filepath.Walk(configDir, func(path string, info os.FileInfo, err error) error {
+	mappingsDir, err := MappingsDir()
+	if err != nil {
+		return nil, err
+	}
+
+	err = filepath.Walk(mappingsDir, func(path string, info os.FileInfo, err error) error {
 		if !info.IsDir() {
 			base := info.Name()
 
@@ -96,4 +94,23 @@ func ListAvailableMappingFiles(configDir string) ([]string, error) {
 	})
 
 	return result, err
+}
+
+func MappingsDirExists() (bool, error) {
+	mappingsDir, err := MappingsDir()
+	if err != nil {
+		return false, err
+	}
+
+	_, err = os.Stat(mappingsDir)
+	return !os.IsNotExist(err), nil
+}
+
+func MappingsDir() (string, error) {
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		return "", err
+	}
+
+	return filepath.Join(configDir, "openemu-controller-bindings", "mappings"), nil
 }

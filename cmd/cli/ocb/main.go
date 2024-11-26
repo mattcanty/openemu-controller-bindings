@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"strings"
 
 	"github.com/mattcanty/openemu-controller-bindings/internal"
 	"github.com/spf13/cobra"
@@ -43,9 +44,23 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all saved binding configurations",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		mappingFiles, err := internal.ListAvailableMappingFiles("config")
+		valid, err := validateMappingsDir()
 		if err != nil {
 			return err
+		}
+
+		if !valid {
+			return nil
+		}
+
+		mappingFiles, err := internal.ListAvailableMappingFiles()
+		if err != nil {
+			return err
+		}
+
+		if len(mappingFiles) == 0 {
+			fmt.Println("No mapping files found")
+			return nil
 		}
 
 		for _, item := range mappingFiles {
@@ -64,12 +79,74 @@ var backupCmd = &cobra.Command{
 	},
 }
 
+var initCmd = &cobra.Command{
+	Use:   "init",
+	Short: "Initialize the mappings directory",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("Initializing mappings directory")
+
+		return internal.InitMappingsDir()
+	},
+}
+
+var captureCmd = &cobra.Command{
+	Use:   "capture",
+	Short: "Capture a controller mapping",
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		system := args[0]
+		game := args[1]
+
+		fmt.Printf("Capturing mapping for %s-%s\n", system, game)
+
+		gameMappingConfig, err := internal.CaptureMapping(system, game)
+		if err != nil {
+			return err
+		}
+
+		mappingsDir, err := internal.MappingsDir()
+		if err != nil {
+			return err
+		}
+
+		configFilePath := strings.ToLower(path.Join(mappingsDir, fmt.Sprintf("%s-%s.yaml", system, game)))
+
+		err = internal.SaveGameMappingConfig(configFilePath, gameMappingConfig)
+		if err != nil {
+			return err
+		}
+
+		fmt.Printf("Saved mapping to %s\n", configFilePath)
+
+		return nil
+	},
+}
+
 func main() {
 	rootCmd := &cobra.Command{Use: "ocb"}
-	rootCmd.AddCommand(loadCmd, listCmd, backupCmd)
+	rootCmd.AddCommand(captureCmd, initCmd, loadCmd, listCmd, backupCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
+
+func validateMappingsDir() (bool, error) {
+	exists, err := internal.MappingsDirExists()
+	if err != nil {
+		return false, err
+	}
+
+	mappingsDir, err := internal.MappingsDir()
+	if err != nil {
+		return false, err
+	}
+
+	if !exists {
+		fmt.Printf("Ensure mappings directory exists at %s\n", mappingsDir)
+		return false, nil
+	}
+
+	return true, nil
 }
