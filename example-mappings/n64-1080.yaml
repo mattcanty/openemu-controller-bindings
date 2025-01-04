@@ -1,0 +1,50 @@
+System: N64
+Controllers:
+  - Name: SonyPS5DualSense
+    Mappings:
+      - System: ButtonDPadUp
+        Controller: DPadUp
+      - System: ButtonA
+        Controller: ButtonCross
+      - System: ButtonCUp
+        Controller: LeftAnalogUp
+      - System: ButtonL
+        Controller: ButtonL1
+      - System: ButtonR
+        Controller: ButtonR1
+      - System: ButtonZ
+        Controller: ButtonR2Button
+      - System: AnalogUp
+        Controller: RightAnalogUp
+      - System: ButtonB
+        Controller: ButtonSquare
+      - System: ButtonCLeft
+        Controller: LeftAnalogLeft
+      - System: ButtonStart
+        Controller: ButtonOptions
+      - System: AnalogLeft
+        Controller: RightAnalogLeft
+  - Name: SonyPS4Dualshock4
+    Mappings:
+      - System: ButtonA
+        Controller: ButtonCross
+      - System: ButtonStart
+        Controller: ButtonOptions
+      - System: ButtonZ
+        Controller: ButtonR2
+      - System: AnalogUp
+        Controller: LeftAnalogUp
+      - System: ButtonB
+        Controller: ButtonSquare
+      - System: AnalogLeft
+        Controller: LeftAnalogLeft
+      - System: ButtonR
+        Controller: ButtonR1
+      - System: ButtonDPadUp
+        Controller: DPadUp
+      - System: ButtonL
+        Controller: ButtonL1
+      - System: ButtonCRight
+        Controller: ButtonCircle
+      - System: ButtonCUp
+        Controller: ButtonTriangle
