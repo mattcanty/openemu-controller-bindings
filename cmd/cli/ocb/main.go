@@ -17,7 +17,12 @@ var loadCmd = &cobra.Command{
 	Short: "Load a controller mapping",
 	Args:  cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		configFilePath := path.Join("config", fmt.Sprintf("%s.yaml", args[0]))
+		mappingDir, err := internal.MappingsDir()
+		if err != nil {
+			return err
+		}
+
+		configFilePath := path.Join(mappingDir, fmt.Sprintf("%s.yaml", args[0]))
 
 		config, err := internal.LoadGameMappingConfig(configFilePath)
 		if err != nil {
